@@ -1,4 +1,12 @@
+import os
+
 import pygame, sys, random
+
+#mixer
+pygame.mixer.init()
+
+#load file
+paddle_hit_sound = pygame.mixer.Sound("108737__branrainey__boing.wav")
 
 def ball_movement():
     """
@@ -12,7 +20,7 @@ def ball_movement():
 
     # Start the ball movement when the game begins
     # TODO Task 5 Create a Merge Conflict
-    speed = 5
+    speed = 10
     if start:
         ball_speed_x = speed * random.choice((1, -1))  # Randomize initial horizontal direction
         ball_speed_y = speed * random.choice((1, -1))  # Randomize initial vertical direction
@@ -24,6 +32,7 @@ def ball_movement():
             # TODO Task 2: Fix score to increase by 1
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
+            paddle_hit_sound.play()
             # TODO Task 6: Add sound effects HERE
 
     # Ball collision with top boundary
@@ -95,7 +104,7 @@ start = False  # Indicates if the game has started
 while True:
     # Event handling
     # TODO Task 4: Add your name
-    name = "John Doe"
+    name = "Christopher Gonzalez"
     for event in pygame.event.get():
         if event.type == pygame.QUIT:  # Quit the game
             pygame.quit()
@@ -118,6 +127,7 @@ while True:
     player_movement()
 
     # Visuals
+    green = pygame.Color('green')
     light_grey = pygame.Color('grey83')
     red = pygame.Color('red')
     screen.fill(bg_color)  # Clear screen with background color
