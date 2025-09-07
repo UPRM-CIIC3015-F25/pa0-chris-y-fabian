@@ -1,4 +1,12 @@
+import os
+
 import pygame, sys, random
+
+#mixer
+pygame.mixer.init()
+
+#load file
+paddle_hit_sound = pygame.mixer.Sound("108737__branrainey__boing.wav")
 
 def ball_movement():
     """
@@ -24,6 +32,7 @@ def ball_movement():
             # TODO Task 2: Fix score to increase by 1
             score += 1  # Increase player score
             ball_speed_y *= -1  # Reverse ball's vertical direction
+            paddle_hit_sound.play()
             # TODO Task 6: Add sound effects HERE
 
     # Ball collision with top boundary
